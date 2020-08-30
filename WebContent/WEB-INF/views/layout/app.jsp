@@ -17,9 +17,7 @@
                 ${param.content}
             </div>
             <div id="footer">
-                <h3>今日の名言</h3>
-                <h3>Think rich, look poor.</h3>
-                <h4>- Andy Warhol -</h4>
+                <h3>今日の名言: ●●●</h3>
                 by Junya Kawasumi.
             </div>
         </div>
