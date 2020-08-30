@@ -51,7 +51,7 @@ public class TeacherValidator {
             EntityManager em = DBUtil.createEntityManager();
             long teachers_count = (long)em.createNamedQuery("checkRegisteredCode", Long.class)
                                            .setParameter("code", code)
-                                             .getSingleResult();
+                                           .getSingleResult(); //データを１件取得(件数)
             em.close();
             if(teachers_count > 0) {
                 return "入力された教職員IDの情報はすでに存在しています。";
