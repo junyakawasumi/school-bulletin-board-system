@@ -4,7 +4,7 @@
     <c:param name="content">
         <c:if test="${flush != null}"> <%-- フラッシュメッセージがある場合の処理 --%>
             <div id="flush_success">
-                <c:out value="${flush}"></c:out> <%-- フラッシュメッセージを出力 --%>>
+                <c:out value="${flush}"></c:out> <%-- フラッシュメッセージを出力 --%>
             </div>
         </c:if>
         <h2>教職員 一覧</h2>
@@ -15,7 +15,7 @@
                     <th>氏名</th>
                     <th>操作</th>
                 </tr>
-                <c:forEach var="teacher" items="${teachers}" varStatus="status"> <%-- 教職員のデータを繰り返し表示(最大20件) --%>>
+                <c:forEach var="teacher" items="${teachers}" varStatus="status"> <%-- 教職員のデータを繰り返し表示(最大20件) --%>
                     <tr class="row${status.count % 2}">
                         <td><c:out value="${teacher.code}" /></td> <%-- 教職員ID --%>
                         <td><c:out value="${teacher.name}" /></td>　<%-- 氏名 --%>
