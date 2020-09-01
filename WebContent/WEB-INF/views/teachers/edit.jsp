@@ -12,7 +12,7 @@
 
                 <p><a href="#" onclick="confirmDestroy();">この教職員情報を削除する</a></p>
                 <form method="POST" action="<c:url value='/teachers/destroy' />">
-                    <input type="hidden" name="_token" value="${_token}" /> <%-- セッションID --%>>
+                    <input type="hidden" name="_token" value="${_token}" /> <%-- セッションID --%>
                 </form>
                 <script> <%-- JavaScript --%>
                     function confirmDestroy() {
