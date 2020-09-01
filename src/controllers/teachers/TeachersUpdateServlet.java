@@ -38,11 +38,12 @@ public class TeachersUpdateServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //セッションIDをgetParameterから取得し変数_tokenに格納
         String _token = (String)request.getParameter("_token");
+
         //セッションIDを照合し、一致すれば処理を行う
         if(_token != null && _token.equals(request.getSession().getId())) {
             //データベースにアクセス
             EntityManager em = DBUtil.createEntityManager();
-            //findメソッドで対応する教職員IDのデータを取得しインスタンスtに格納
+            //findメソッドで対応するIDのデータを取得しインスタンスtに格納
             Teacher t = em.find(Teacher.class, (Integer)(request.getSession().getAttribute("teacher_id")));
 
             // 教職員番号に現在の値と異なる値が入力されていたら重複チェックを行う

@@ -12,7 +12,7 @@
 </c:if>
 
 <%-- データ入力部分 --%>
-<label for="code">教職員ID</label><br />
+<label for="code">教職員番号</label><br />
 <input type="text" name="code" value="${teacher.code}" />
 <br /><br />
 

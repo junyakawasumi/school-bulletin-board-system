@@ -38,15 +38,15 @@ public class TeacherValidator {
         return errors;
     }
 
-    //教職員IDのバリデーションチェック
-    //第２引数がtrueであれば教職員IDの重複チェックを行う
+    //教職員番号のバリデーションチェック
+    //第２引数がtrueであれば教職員番号の重複チェックを行う
     private static String _validateCode(String code, Boolean code_duplicate_check_flag) {
         // 必須入力チェック
         if(code == null || code.equals("")) {
-            return "教職員IDを入力してください。";
+            return "教職員番号を入力してください。";
         }
 
-        // すでに登録されている教職員IDとの重複チェック
+        // すでに登録されている教職員番号との重複チェック
         if(code_duplicate_check_flag) {
             EntityManager em = DBUtil.createEntityManager();
             long teachers_count = (long)em.createNamedQuery("checkRegisteredCode", Long.class)
@@ -54,7 +54,7 @@ public class TeacherValidator {
                                            .getSingleResult(); //データを１件取得(件数)
             em.close();
             if(teachers_count > 0) {
-                return "入力された教職員IDの情報はすでに存在しています。";
+                return "入力された教職員番号の情報はすでに存在しています。";
             }
         }
 

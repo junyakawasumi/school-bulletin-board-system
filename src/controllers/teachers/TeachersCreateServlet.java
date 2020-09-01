@@ -42,11 +42,11 @@ public class TeachersCreateServlet extends HttpServlet {
         if(_token != null && _token.equals(request.getSession().getId())){
             //データベースにアクセス
             EntityManager em = DBUtil.createEntityManager();
-
+            //インスタンスを作成
             Teacher t = new Teacher();
 
             //setterを利用してgetParameterで取得した値をそれぞれのプロパティに格納
-            t.setCode(request.getParameter("code")); //教職員ID
+            t.setCode(request.getParameter("code")); //教職員番号
             t.setName(request.getParameter("name")); //氏名
             //パスワードはハッシュ化してから格納
             t.setPassword(
@@ -63,14 +63,14 @@ public class TeachersCreateServlet extends HttpServlet {
             t.setDelete_flag(0); //現役: 0 /  削除済み: 1
 
             //バリデーションチェックを行い、エラーが内容をリストに格納
-            //第２引数がtrueの場合、教職員IDの重複チェック, 第３引数がtrueの場合、パスワードの入力値チェック
+            //第２引数がtrueの場合、教職員番号の重複チェック, 第３引数がtrueの場合、パスワードの入力値チェック
             List<String> errors = TeacherValidator.validate(t, true, true);
 
             //エラーがあった場合の処理
             if(errors.size() > 0) {
                 em.close();
 
-                //リクエストスコープにセッションID, Teacher型のインスタンス, エラー内容(List)
+                //リクエストスコープにセッションID, Teacher型のインスタンス, エラー内容(List)を保存
                 request.setAttribute("_token", request.getSession().getId());
                 request.setAttribute("teacher", t);
                 request.setAttribute("errors", errors);

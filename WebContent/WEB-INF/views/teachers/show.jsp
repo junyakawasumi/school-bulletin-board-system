@@ -4,13 +4,13 @@
 <c:import url="/WEB-INF/views/layout/app.jsp">
     <c:param name="content">
         <c:choose>
-            <c:when test="${teacher != null}"> <%-- "teacher"がnullではなかった場合の処理 --%>>
-                <h2>id : ${teacher.id} の教職員情報 詳細ページ</h2>
+            <c:when test="${teacher != null}"> <%-- "teacher"がnullではなかった場合の処理 --%>
+                <h2>ID : ${teacher.id} の教職員情報 詳細ページ</h2>
 
                 <table>
                     <tbody>
                         <tr>
-                            <th>教職員ID</th>
+                            <th>教職員番号</th>
                             <td><c:out value="${teacher.code}" /></td>
                         </tr>
                         <tr>

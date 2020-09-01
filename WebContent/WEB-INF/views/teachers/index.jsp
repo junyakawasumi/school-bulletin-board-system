@@ -11,13 +11,13 @@
         <table id="teacher_list">
             <tbody>
                 <tr>
-                    <th>教職員ID</th>
+                    <th>教職員番号</th>
                     <th>氏名</th>
                     <th>操作</th>
                 </tr>
                 <c:forEach var="teacher" items="${teachers}" varStatus="status"> <%-- 教職員のデータを繰り返し表示(最大20件) --%>
                     <tr class="row${status.count % 2}">
-                        <td><c:out value="${teacher.code}" /></td> <%-- 教職員ID --%>
+                        <td><c:out value="${teacher.code}" /></td> <%-- 教職員番号 --%>
                         <td><c:out value="${teacher.name}" /></td>　<%-- 氏名 --%>
                         <td>
                             <c:choose>
