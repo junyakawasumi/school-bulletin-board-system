@@ -5,7 +5,7 @@
     <c:param name="content">
         <c:choose>
             <c:when test="${teacher != null}"> <%-- "teacher"がnullではなかった場合の処理 --%>
-                <h2>ID : ${teacher.id} の教職員情報 詳細ページ</h2>
+                <h2>${teacher.name} 先生の教職員情報 詳細ページ</h2>
 
                 <table>
                     <tbody>

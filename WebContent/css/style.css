@@ -93,12 +93,22 @@ button {
     background-color: #f8d7da;
 }
 
-table#employee_list th {
+table#teacher_list th {
     width: 30%;
     padding: 10px 2%;
 }
 
-table#employee_list td {
+table#teacher_list td {
+    width: 29%;
+    padding: 10px 2%;
+}
+
+table#student_list th {
+    width: 30%;
+    padding: 10px 2%;
+}
+
+table#student_list td {
     width: 29%;
     padding: 10px 2%;
 }

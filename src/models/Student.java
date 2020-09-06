@@ -11,32 +11,28 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
-@Table(name = "teachers")
+@Table(name = "students")
 @NamedQueries({
     @NamedQuery(
-            name = "getAllTeachers",
-            query = "SELECT t FROM Teacher AS t ORDER BY t.id DESC"
+            name = "getAllStudents",
+            query = "SELECT s FROM Student AS s ORDER BY s.id DESC"
             ),
     @NamedQuery(
-            name = "getTeachersCount",
-            query = "SELECT COUNT(t) FROM Teacher AS t"
+            name = "getStudentsCount",
+            query = "SELECT COUNT(s) FROM Student AS s"
             ),
     @NamedQuery(
-            name = "checkRegisteredCode",
-            query = "SELECT COUNT(t) FROM Teacher AS t WHERE t.code = :code"
+            name = "checkRegisteredStudentCode",
+            query = "SELECT COUNT(s) FROM Student AS s WHERE s.code = :code"
             ),
     @NamedQuery(
-            name = "checkLoginCodeAndPassword",
-            query = "SELECT t FROM Teacher AS t WHERE t.delete_flag = 0 AND t.code = :code AND t.password = :pass"
-            ),
-    @NamedQuery(
-            name = "test",
-            query = "SELECT t FROM Teacher AS t WHERE t.admin_flag = :admin_flag AND t.delete_flag = :delete_flag"
+            name = "checkLoginStudentCodeAndPassword",
+            query = "SELECT s FROM Student AS s WHERE s.delete_flag = 0 AND s.code = :code AND s.password = :pass"
             )
 })
 
 @Entity
-public class Teacher {
+public class Student {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,11 +44,14 @@ public class Teacher {
     @Column(name = "name", nullable = false)
     private String name;
 
+    @Column(name = "grade", nullable = false)
+    private Integer grade;
+
+    @Column(name = "team", nullable = false)
+    private Integer team;
+
     @Column(name = "password", length = 64, nullable = false)
     private String password;
-
-    @Column(name = "admin_flag", nullable = false)
-    private Integer admin_flag;
 
     @Column(name = "created_at", nullable = false)
     private Timestamp created_at;
@@ -87,20 +86,28 @@ public class Teacher {
         this.name = name;
     }
 
+    public Integer getGrade() {
+        return grade;
+    }
+
+    public void setGrade(Integer grade) {
+        this.grade = grade;
+    }
+
+    public Integer getTeam() {
+        return team;
+    }
+
+    public void setTeam(Integer team) {
+        this.team = team;
+    }
+
     public String getPassword() {
         return password;
     }
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public Integer getAdmin_flag() {
-        return admin_flag;
-    }
-
-    public void setAdmin_flag(Integer admin_flag) {
-        this.admin_flag = admin_flag;
     }
 
     public Timestamp getCreated_at() {
@@ -126,6 +133,5 @@ public class Teacher {
     public void setDelete_flag(Integer delete_flag) {
         this.delete_flag = delete_flag;
     }
-
 
 }

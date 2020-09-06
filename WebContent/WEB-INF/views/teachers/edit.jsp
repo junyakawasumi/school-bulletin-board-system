@@ -4,8 +4,8 @@
     <c:param name="content">
         <c:choose>
             <c:when test="${teacher != null}"> <%-- リクエストスコープに保存されたteacherがnullではなかった場合の処理 --%>
-                <h2>ID : ${teacher.id} の教職員情報 編集ページ</h2>
-                <p>（パスワードは変更する場合のみ入力してください）</p>
+                <h2>${teacher.name} 先生の教職員情報 詳細ページ</h2>
+                <p>（※パスワードは変更する場合のみ入力してください）</p>
                 <form method="POST" action="<c:url value='/teachers/update' />">
                     <c:import url="_form.jsp" />
                 </form>
