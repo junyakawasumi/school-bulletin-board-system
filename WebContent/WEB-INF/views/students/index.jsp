@@ -12,12 +12,16 @@
             <tbody>
                 <tr>
                     <th>学生証番号</th>
+                    <th>学年</th>
+                    <th>クラス</th>
                     <th>氏名</th>
                     <th>操作</th>
                 </tr>
-                <c:forEach var="student" items="${students}" varStatus="status"> <%-- 教職員のデータを繰り返し表示(最大20件) --%>
+                <c:forEach var="student" items="${students}" varStatus="status"> <%-- 生徒のデータを繰り返し表示(最大20件) --%>
                     <tr class="row${status.count % 2}">
-                        <td><c:out value="${student.code}" /></td> <%-- 教職員番号 --%>
+                        <td><c:out value="${student.code}" /></td> <%-- 学生証番号 --%>
+                        <td><c:out value="${student.grade}" /></td> <%-- 学年 --%>
+                        <td><c:out value="${student.team}" /></td> <%-- クラス --%>
                         <td><c:out value="${student.name}" /></td>　<%-- 氏名 --%>
                         <td>
                             <c:choose>
