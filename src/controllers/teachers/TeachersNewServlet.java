@@ -33,7 +33,7 @@ public class TeachersNewServlet extends HttpServlet {
         request.setAttribute("_token", request.getSession().getId()); //セッションIDをリクエストスコープに保存
         request.setAttribute("teacher", new Teacher()); //Teacherのインスタンスを作成しリクエストスコープに保存
 
-        //teachers/new.jspにフォワード
+        //フォワード
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/teachers/new.jsp");
         rd.forward(request, response);
     }

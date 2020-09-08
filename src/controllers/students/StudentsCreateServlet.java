@@ -46,7 +46,7 @@ public class StudentsCreateServlet extends HttpServlet {
             Student s = new Student();
 
             //setterを利用してgetParameterで取得した値をそれぞれのプロパティに格納
-            s.setCode(request.getParameter("code")); //教職員番号
+            s.setCode(request.getParameter("code")); //学生証番号
             s.setName(request.getParameter("name")); //氏名
             s.setGrade(Integer.parseInt(request.getParameter("grade"))); //学年
             s.setTeam(Integer.parseInt(request.getParameter("team"))); //クラス
@@ -72,12 +72,12 @@ public class StudentsCreateServlet extends HttpServlet {
             if(errors.size() > 0) {
                 em.close();
 
-                //リクエストスコープにセッションID, Teacher型のインスタンス, エラー内容(List)を保存
+                //リクエストスコープにセッションID, Student型のインスタンス, エラー内容(List)を保存
                 request.setAttribute("_token", request.getSession().getId());
                 request.setAttribute("student", s);
                 request.setAttribute("errors", errors);
 
-                //teachers/new.jspにフォワード
+                //フォワード
                 RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/students/new.jsp");
                 rd.forward(request, response);
             } else {
@@ -90,7 +90,7 @@ public class StudentsCreateServlet extends HttpServlet {
                 //セッションスコープにフラッシュメッセージを保存
                 request.getSession().setAttribute("flush", "登録が完了しました。");
 
-                //teachers/index.jspにリダイレクト
+                //リダイレクト
                 response.sendRedirect(request.getContextPath() + "/students/index");
             }
 
