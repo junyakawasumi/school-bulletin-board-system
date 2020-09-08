@@ -55,9 +55,10 @@ public class TeachersIndexServlet extends HttpServlet {
 
         em.close();
 
-        request.setAttribute("teachers", teachers); //取得された教職員のデータ(最大20件)をリクエストスコープに保存
-        request.setAttribute("teachers_count", teachers_count); //データの件数をリクエストスコープに保存
-        request.setAttribute("page", page); //ページ数をリクエストスコープに保存
+        //リクエストスコープに教職員データ, データ件数, ページ数を保存
+        request.setAttribute("teachers", teachers);
+        request.setAttribute("teachers_count", teachers_count);
+        request.setAttribute("page", page);
 
         //フラッシュメッセージのチェック
         //フラッシュメッセージがセッションスコープに保存されていたら、取得し、リクエストスコープに保存(セッションスコープからは削除)
@@ -66,7 +67,7 @@ public class TeachersIndexServlet extends HttpServlet {
             request.getSession().removeAttribute("flush");
         }
 
-        //employees/index.jspにフォワード
+        //フォワード
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/teachers/index.jsp");
         rd.forward(request, response);
     }

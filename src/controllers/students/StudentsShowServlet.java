@@ -35,7 +35,7 @@ public class StudentsShowServlet extends HttpServlet {
         //データベースにアクセス
         EntityManager em = DBUtil.createEntityManager();
 
-        //findメソッドで該当IDのデータ一件をTeacherのインスタンスに格納
+        //findメソッドで該当IDのデータ一件をsに格納
         Student s = em.find(Student.class, Integer.parseInt(request.getParameter("id")));
 
         em.close();

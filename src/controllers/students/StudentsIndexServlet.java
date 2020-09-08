@@ -43,21 +43,22 @@ public class StudentsIndexServlet extends HttpServlet {
             page = Integer.parseInt(request.getParameter("page"));
         } catch(NumberFormatException e) { }
 
-        //getAllTeachersメソッドを用いてデータをTeacher型のリストteachersに格納
+        //getAllStudentsメソッドを用いてデータをstudentsに格納
         List<Student> students = em.createNamedQuery("getAllStudents", Student.class)
                                      .setFirstResult(20 * (page - 1)) //何件目からデータを取得するか(スタートは0番目)
                                      .setMaxResults(20) //データの最大取得件数(20件で固定)
                                      .getResultList(); //問合せ結果の取得
 
-        //getTeachersCountメソッドを用いてデータの件数をlong型の変数teachers_countに格納
+        //getStudentsCountメソッドを用いてデータの件数をlong型の変数students_countに格納
         long students_count = (long)em.createNamedQuery("getStudentsCount", Long.class)
-                                       .getSingleResult(); //件数が返るのでSingleResult
+                                       .getSingleResult(); //件数
 
         em.close();
 
-        request.setAttribute("students", students); //取得された教職員のデータ(最大20件)をリクエストスコープに保存
-        request.setAttribute("students_count", students_count); //データの件数をリクエストスコープに保存
-        request.setAttribute("page", page); //ページ数をリクエストスコープに保存
+        //リクエストスコープに生徒データ(最大20件), データの件数, ページ数を保存
+        request.setAttribute("students", students);
+        request.setAttribute("students_count", students_count);
+        request.setAttribute("page", page);
 
         //フラッシュメッセージのチェック
         //フラッシュメッセージがセッションスコープに保存されていたら、取得し、リクエストスコープに保存(セッションスコープからは削除)
@@ -66,7 +67,7 @@ public class StudentsIndexServlet extends HttpServlet {
             request.getSession().removeAttribute("flush");
         }
 
-        //employees/index.jspにフォワード
+        //フォワード
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/students/index.jsp");
         rd.forward(request, response);
     }

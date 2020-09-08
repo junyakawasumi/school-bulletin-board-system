@@ -36,16 +36,18 @@ public class StudentsCreateServlet extends HttpServlet {
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-      //セッションIDをgetParameterから取得し変数_tokenに格納
+        //セッションIDを変数_tokenに格納
         String _token = (String)request.getParameter("_token");
-        //セッションIDを照合し、一致すれば処理を行う
+
+        //セッションIDの照合
         if(_token != null && _token.equals(request.getSession().getId())){
             //データベースにアクセス
             EntityManager em = DBUtil.createEntityManager();
-            //インスタンスを作成
+
+            //インスタンスの作成
             Student s = new Student();
 
-            //setterを利用してgetParameterで取得した値をそれぞれのプロパティに格納
+            //setterを利用して値をそれぞれのプロパティに格納
             s.setCode(request.getParameter("code")); //学生証番号
             s.setName(request.getParameter("name")); //氏名
             s.setGrade(Integer.parseInt(request.getParameter("grade"))); //学年
@@ -64,7 +66,7 @@ public class StudentsCreateServlet extends HttpServlet {
             s.setUpdated_at(currentTime); //変更日時
             s.setDelete_flag(0); //現役: 0 /  削除済み: 1
 
-            //バリデーションチェックを行い、エラーが内容をリストに格納
+            //バリデーションチェック
             //第２引数がtrueの場合、教職員番号の重複チェック, 第３引数がtrueの場合、パスワードの入力値チェック
             List<String> errors = StudentValidator.validate(s, true, true);
 

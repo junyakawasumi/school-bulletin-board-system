@@ -32,15 +32,15 @@ public class StudentsDestroyServlet extends HttpServlet {
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //セッションIDをgetParameterから取得し変数_tokenに格納
+        //セッションIDを変数_tokenに格納
         String _token = (String)request.getParameter("_token");
 
-        //セッションIDを照合し、一致すれば処理を行う
+        //セッションIDの照合
         if(_token != null && _token.equals(request.getSession().getId())) {
             //データベースにアクセス
             EntityManager em = DBUtil.createEntityManager();
 
-            //findメソッドでIDに該当するデータ一件を取得しインスタンスtに格納
+            //findメソッドでIDに該当するデータ一件を取得しインスタンスsに格納
             Student s = em.find(Student.class, (Integer)(request.getSession().getAttribute("student_id")));
             s.setDelete_flag(1); //delete_flagに1を格納(=削除済)
             s.setUpdated_at(new Timestamp(System.currentTimeMillis())); //変更日時を変更

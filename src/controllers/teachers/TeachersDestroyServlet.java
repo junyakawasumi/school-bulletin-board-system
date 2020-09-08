@@ -32,11 +32,12 @@ public class TeachersDestroyServlet extends HttpServlet {
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //セッションIDをgetParameterから取得し変数_tokenに格納
+        //セッションIDを変数_tokenに格納
         String _token = (String)request.getParameter("_token");
 
         //セッションIDを照合し、一致すれば処理を行う
         if(_token != null && _token.equals(request.getSession().getId())) {
+
             //データベースにアクセス
             EntityManager em = DBUtil.createEntityManager();
 

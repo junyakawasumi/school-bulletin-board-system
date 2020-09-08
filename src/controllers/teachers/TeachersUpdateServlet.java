@@ -36,13 +36,15 @@ public class TeachersUpdateServlet extends HttpServlet {
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //セッションIDをgetParameterから取得し変数_tokenに格納
+        //セッションIDを変数_tokenに格納
         String _token = (String)request.getParameter("_token");
 
         //セッションIDを照合し、一致すれば処理を行う
         if(_token != null && _token.equals(request.getSession().getId())) {
+
             //データベースにアクセス
             EntityManager em = DBUtil.createEntityManager();
+
             //findメソッドで対応するIDのデータを取得しインスタンスtに格納
             Teacher t = em.find(Teacher.class, (Integer)(request.getSession().getAttribute("teacher_id")));
 
@@ -89,6 +91,7 @@ public class TeachersUpdateServlet extends HttpServlet {
                 RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/teachers/edit.jsp");
                 rd.forward(request, response);
             } else { //エラーがなかった場合の処理
+
                 //データを確定
                 em.getTransaction().begin();
                 em.getTransaction().commit();
@@ -98,7 +101,8 @@ public class TeachersUpdateServlet extends HttpServlet {
                 request.getSession().setAttribute("flush", "更新が完了しました。");
                 //セッションスコープからIDを削除
                 request.getSession().removeAttribute("teacher_id");
-                //teachers/index.jspにリダイレクト
+
+                //リダイレクト
                 response.sendRedirect(request.getContextPath() + "/teachers/index");
             }
 

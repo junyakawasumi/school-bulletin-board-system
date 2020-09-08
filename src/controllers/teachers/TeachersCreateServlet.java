@@ -38,16 +38,20 @@ public class TeachersCreateServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //セッションIDをgetParameterから取得し変数_tokenに格納
         String _token = (String)request.getParameter("_token");
+
         //セッションIDを照合し、一致すれば処理を行う
         if(_token != null && _token.equals(request.getSession().getId())){
+
             //データベースにアクセス
             EntityManager em = DBUtil.createEntityManager();
+
             //インスタンスを作成
             Teacher t = new Teacher();
 
-            //setterを利用してgetParameterで取得した値をそれぞれのプロパティに格納
+            //setterを利用して値をそれぞれのプロパティに格納
             t.setCode(request.getParameter("code")); //教職員番号
             t.setName(request.getParameter("name")); //氏名
+
             //パスワードはハッシュ化してから格納
             t.setPassword(
                     EncryptUtil.getPasswordEncrypt(
@@ -75,7 +79,7 @@ public class TeachersCreateServlet extends HttpServlet {
                 request.setAttribute("teacher", t);
                 request.setAttribute("errors", errors);
 
-                //teachers/new.jspにフォワード
+                //フォワード
                 RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/teachers/new.jsp");
                 rd.forward(request, response);
             } else {
@@ -88,7 +92,7 @@ public class TeachersCreateServlet extends HttpServlet {
                 //セッションスコープにフラッシュメッセージを保存
                 request.getSession().setAttribute("flush", "登録が完了しました。");
 
-                //teachers/index.jspにリダイレクト
+                //リダイレクト
                 response.sendRedirect(request.getContextPath() + "/teachers/index");
             }
 

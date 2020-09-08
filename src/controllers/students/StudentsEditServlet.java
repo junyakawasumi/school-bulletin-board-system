@@ -32,17 +32,18 @@ public class StudentsEditServlet extends HttpServlet {
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-      //データベースにアクセス
+        //データベースにアクセス
         EntityManager em = DBUtil.createEntityManager();
 
-        //findメソッドを用いて該当IDのデータ一件をStudent型のインスタンスに格納
+        //findメソッドを用いて該当IDのデータ一件をインスタンスに格納
         Student s = em.find(Student.class, Integer.parseInt(request.getParameter("id")));
 
         em.close();
 
-        request.setAttribute("student", s); //取得したデータ一件(Student型)をリクエストスコープに保存
-        request.setAttribute("_token", request.getSession().getId()); //セッションIDをリクエストスコープに保存
-        request.getSession().setAttribute("student_id", s.getId()); //IDをセッションスコープに保存
+        //リクエストスコープにStudent型のインスタンス, セッションID, セッションスコープにIDを保存
+        request.setAttribute("student", s);
+        request.setAttribute("_token", request.getSession().getId());
+        request.getSession().setAttribute("student_id", s.getId());
 
         //フォワード
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/students/edit.jsp");

@@ -43,7 +43,7 @@ public class TeachersShowServlet extends HttpServlet {
         //リクエストスコープに取得したデータ一件を保存
         request.setAttribute("teacher", t);
 
-        //teachers/show.jspにフォワード
+        //フォワード
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/teachers/show.jsp");
         rd.forward(request, response);
     }

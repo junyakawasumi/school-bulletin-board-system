@@ -31,7 +31,7 @@ public class StudentsNewServlet extends HttpServlet {
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("_token", request.getSession().getId()); //セッションIDをリクエストスコープに保存
-        request.setAttribute("student", new Student()); //Teacherのインスタンスを作成しリクエストスコープに保存
+        request.setAttribute("student", new Student()); //Studentのインスタンスを作成しリクエストスコープに保存
 
         //フォワード
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/students/new.jsp");
