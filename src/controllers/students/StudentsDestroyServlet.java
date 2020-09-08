@@ -1,4 +1,4 @@
-package controllers.teachers;
+package controllers.students;
 
 import java.io.IOException;
 import java.sql.Timestamp;
@@ -10,20 +10,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import models.Teacher;
+import models.Student;
 import utils.DBUtil;
 
 /**
- * Servlet implementation class TeachersDestroyServlet
+ * Servlet implementation class StudentsDestroyServlet
  */
-@WebServlet("/teachers/destroy")
-public class TeachersDestroyServlet extends HttpServlet {
+@WebServlet("/students/destroy")
+public class StudentsDestroyServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public TeachersDestroyServlet() {
+    public StudentsDestroyServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -41,9 +41,9 @@ public class TeachersDestroyServlet extends HttpServlet {
             EntityManager em = DBUtil.createEntityManager();
 
             //findメソッドでIDに該当するデータ一件を取得しインスタンスtに格納
-            Teacher t = em.find(Teacher.class, (Integer)(request.getSession().getAttribute("teacher_id")));
-            t.setDelete_flag(1); //delete_flagに1を格納(=削除済)
-            t.setUpdated_at(new Timestamp(System.currentTimeMillis())); //変更日時を変更
+            Student s = em.find(Student.class, (Integer)(request.getSession().getAttribute("student_id")));
+            s.setDelete_flag(1); //delete_flagに1を格納(=削除済)
+            s.setUpdated_at(new Timestamp(System.currentTimeMillis())); //変更日時を変更
 
             //データを確定
             em.getTransaction().begin();
@@ -54,7 +54,7 @@ public class TeachersDestroyServlet extends HttpServlet {
             request.getSession().setAttribute("flush", "削除が完了しました。");
 
             //リダイレクト
-            response.sendRedirect(request.getContextPath() + "/teachers/index");
+            response.sendRedirect(request.getContextPath() + "/students/index");
         }
     }
 
