@@ -18,7 +18,7 @@ import utils.EncryptUtil;
 /**
  * Servlet implementation class TeachersLoginServlet
  */
-@WebServlet("/teacherslogin")
+@WebServlet("/tlogin")
 public class TeachersLoginServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 

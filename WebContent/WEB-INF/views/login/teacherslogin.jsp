@@ -13,7 +13,7 @@
             </div>
         </c:if>
         <h2>ログイン</h2>
-        <form method="POST" action="<c:url value='/teacherslogin' />">
+        <form method="POST" action="<c:url value='/tlogin' />">
             <label for="code">教職員番号</label><br />
             <input type="text" name="code" value="${code}" />
             <br /><br />

@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class TeachersLogoutServlet
  */
-@WebServlet("/teacherslogout")
+@WebServlet("/tlogout")
 public class TeachersLogoutServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -34,7 +34,7 @@ public class TeachersLogoutServlet extends HttpServlet {
         request.getSession().setAttribute("flush", "ログアウトしました。");
 
         //リダイレクト
-        response.sendRedirect(request.getContextPath() + "/login");
+        response.sendRedirect(request.getContextPath() + "/tlogin");
     }
 
 }
