@@ -48,6 +48,5 @@
             </c:forEach>
         </div>
         <p><a href="<c:url value='/teachers/new' />">新規教職員の登録</a></p>
-        <p><a href="<c:url value='/students/index' />">生徒管理</a></p>
     </c:param>
 </c:import>

@@ -4,20 +4,34 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <title>学校掲示板</title>
+        <title>●●高等学校掲示板</title>
         <link rel="stylesheet" href="<c:url value='/css/reset.css' />">
         <link rel="stylesheet" href="<c:url value='/css/style.css' />">
     </head>
     <body>
         <div id="wrapper">
             <div id="header">
-                <h1>●●高等学校掲示板</h1>
+                <div id="header_menu">
+                    <h1><a href="<c:url value='/' />">●●高等学校掲示板</a></h1>&nbsp;&nbsp;&nbsp;
+                    <c:if test="${sessionScope.login_teacher != null}">
+                        <c:if test="${sessionScope.login_teacher.admin_flag == 1}">
+                            <a href="<c:url value='/teachers/index' />">教職員管理</a>&nbsp;
+                            <a href="<c:url value='/students/index' />">生徒管理</a>&nbsp;
+                        </c:if>
+                        <a href="<c:url value='/reports/index' />">メッセージ管理</a>&nbsp;
+                    </c:if>
+                </div>
+                <c:if test="${sessionScope.login_teacher != null}">
+                    <div id="teacher_name">
+                        <c:out value="${sessionScope.login_teacher.name}" />&nbsp;さん&nbsp;&nbsp;&nbsp;
+                        <a href="<c:url value='/tlogout' />">ログアウト</a>
+                    </div>
+                </c:if>
             </div>
             <div id="content">
                 ${param.content}
             </div>
             <div id="footer">
-                <h3>今日の名言: ●●●</h3>
                 by Junya Kawasumi.
             </div>
         </div>
