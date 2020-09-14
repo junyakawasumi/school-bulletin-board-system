@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import models.Student;
 import models.Teacher;
 
 /**
@@ -39,19 +40,22 @@ public class TeachersLoginFilter implements Filter {
      * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
      */
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+
         String context_path = ((HttpServletRequest)request).getContextPath();
         String servlet_path = ((HttpServletRequest)request).getServletPath();
 
         if(!servlet_path.matches("/css.*")) {       // CSSフォルダ内は認証処理から除外する
+
             HttpSession session = ((HttpServletRequest)request).getSession();
 
             // セッションスコープに保存された教職員（ログインユーザ）情報を取得
             Teacher t = (Teacher)session.getAttribute("login_teacher");
+            Student s = (Student)session.getAttribute("login_student");
 
-            if(!servlet_path.equals("/tlogin")) {        // ログイン画面以外について
+            if(!servlet_path.equals("/tlogin") && !servlet_path.equals("/slogin")) {        // ログイン画面以外について
                 // ログアウトしている状態であれば
                 // ログイン画面にリダイレクト
-                if(t == null) {
+                if(t == null && s == null) {
                     ((HttpServletResponse)response).sendRedirect(context_path + "/tlogin");
                     return;
                 }
@@ -64,14 +68,18 @@ public class TeachersLoginFilter implements Filter {
             } else {                                    // ログイン画面について
                 // ログインしているのにログイン画面を表示させようとした場合は
                 // システムのトップページにリダイレクト
-                if(t != null) {
+                if(t != null || s != null) {
                     ((HttpServletResponse)response).sendRedirect(context_path + "/");
                     return;
+
+
                 }
             }
         }
         chain.doFilter(request, response);
     }
+
+
 
     /**
      * @see Filter#init(FilterConfig)
