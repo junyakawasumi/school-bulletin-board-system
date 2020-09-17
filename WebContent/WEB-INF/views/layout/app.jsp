@@ -18,7 +18,7 @@
                             <a href="<c:url value='/teachers/index' />">教職員管理</a>&nbsp;
                             <a href="<c:url value='/students/index' />">生徒管理</a>&nbsp;
                         </c:if>
-                        <a href="<c:url value='/reports/index' />">メッセージ管理</a>&nbsp;
+                        <a href="<c:url value='/messages/index' />">メッセージ管理</a>&nbsp;
                     </c:if>
                 </div>
                 <c:if test="${sessionScope.login_teacher != null}">

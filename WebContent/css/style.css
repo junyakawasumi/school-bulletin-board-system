@@ -144,3 +144,24 @@ select {
 h1 a {
     color: #eeeeee;
 }
+
+table#message_list th {
+    font-weight: bold;
+    padding: 10px 2%;
+}
+
+table#message_list .message_name {
+    width: 20%;
+    padding: 10px 2%;
+}
+table#message_list .message_date {
+    width: 20%;
+}
+
+table#message_list .message_title {
+    width: 37%;
+}
+
+table#message_list .message_action {
+    width: 13%;
+}
