@@ -23,7 +23,7 @@
                 </div>
                 <c:if test="${sessionScope.login_teacher != null}">
                     <div id="teacher_name">
-                        <c:out value="${sessionScope.login_teacher.name}" />&nbsp;さん&nbsp;&nbsp;&nbsp;
+                        <c:out value="${sessionScope.login_teacher.name}" />&nbsp;先生&nbsp;&nbsp;&nbsp;
                         <a href="<c:url value='/tlogout' />">ログアウト</a>
                     </div>
                 </c:if>
