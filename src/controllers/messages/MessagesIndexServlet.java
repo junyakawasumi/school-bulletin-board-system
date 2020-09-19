@@ -47,8 +47,8 @@ public class MessagesIndexServlet extends HttpServlet {
 
         //getAllMessagesメソッドを用いてデータをMessage型のリストmessagesに格納
         List<Message> messages = em.createNamedQuery("getAllMessages", Message.class)
-                .setFirstResult(15 * (page - 1))
-                .setMaxResults(15)
+                .setFirstResult(20 * (page - 1))
+                .setMaxResults(20)
                 .getResultList();
 
         //getMessagesCountメソッドを用いてデータの件数をlong型の変数messages_countに格納

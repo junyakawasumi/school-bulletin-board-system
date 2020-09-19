@@ -32,6 +32,14 @@ import javax.persistence.Table;
     @NamedQuery(
             name = "getMyMessagesCount",
             query = "SELECT COUNT(m) FROM Message AS m WHERE m.teacher = :teacher"
+            ),
+    @NamedQuery(
+            name = "getAllMessagesForStudents",
+            query = "SELECT m FROM Message AS m WHERE m.open_range = 0 ORDER BY m.id DESC"
+            ),
+    @NamedQuery(
+            name = "getAllMessagesForStudentsCount",
+            query = "SELECT COUNT(m) FROM Message AS m WHERE m.open_range = 0"
             )
 })
 
