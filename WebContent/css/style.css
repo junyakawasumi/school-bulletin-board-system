@@ -165,3 +165,7 @@ table#message_list .message_title {
 table#message_list .message_action {
     width: 13%;
 }
+
+pre {
+    font-family: "Hiragino Kaku Gothic Pro",Meiryo,"MS PGothic",Helvetica,Arial,sans-serif;
+}
