@@ -9,8 +9,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import models.Message;
+import models.Teacher;
 import utils.DBUtil;
 
 /**
@@ -43,9 +45,19 @@ public class MessagesShowServlet extends HttpServlet {
         request.setAttribute("message", m);
         request.setAttribute("_token", request.getSession().getId());
 
-        //フォワード
-        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/messages/show.jsp");
-        rd.forward(request, response);
+        // セッションスコープに保存されたログインユーザ情報を取得
+        HttpSession session = ((HttpServletRequest)request).getSession();
+        Teacher t = (Teacher)session.getAttribute("login_teacher");
+
+        if(t != null) {
+          //教職員用show.jspへフォワード
+          RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/messages/show.jsp");
+          rd.forward(request, response);
+        } else {
+          //生徒用show.jspへフォワード
+          RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/messages/showstudents.jsp");
+          rd.forward(request, response);
+        }
     }
 
 }

@@ -48,7 +48,7 @@ public class TeachersLoginFilter implements Filter {
 
             HttpSession session = ((HttpServletRequest)request).getSession();
 
-            // セッションスコープに保存された教職員（ログインユーザ）情報を取得
+            // セッションスコープに保存されたログインユーザ情報を取得
             Teacher t = (Teacher)session.getAttribute("login_teacher");
             Student s = (Student)session.getAttribute("login_student");
 
