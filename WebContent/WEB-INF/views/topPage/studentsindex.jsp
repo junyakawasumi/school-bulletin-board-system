@@ -24,7 +24,7 @@
                         <td class="message_name"><c:out value="${message.teacher.name}" /> 先生</td>
                         <td class="message_date"><fmt:formatDate value='${message.message_date}' pattern='yyyy-MM-dd' /></td>
                         <td class="message_title">${message.title}</td>
-                        <td class="message_action"><a href="<c:url value='/messages/showstudents?id=${message.id}' />">詳細を見る</a></td>
+                        <td class="message_action"><a href="<c:url value='/messages/show?id=${message.id}' />">詳細を見る</a></td>
                     </tr>
                 </c:forEach>
             </tbody>
